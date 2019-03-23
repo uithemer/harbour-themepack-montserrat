@@ -1,13 +1,11 @@
 Name:          harbour-themepack-montserrat
 Version:       0.0.1
-Release:       1
+Release:       2
 Summary:       Montserrat theme pack
-Obsoletes:     harbour-iconpacksupport <= 0.0.4-4
-Conflicts:     harbour-iconpacksupport
 Group:         System/Tools
 Vendor:        fravaccaro
 Distribution:  SailfishOS
-Requires:      harbour-themepacksupport >= 0.0.7-2
+Requires:      harbour-themepacksupport >= 0.8.8-1
 Packager:      fravaccaro <fravaccaro@jollacommunity.it>
 URL:           www.jollacommunity.it
 License:       GPLv3
@@ -19,10 +17,22 @@ Montserrat font package for Theme pack support for Sailfish OS.
 %defattr(-,root,root,-)
 /usr/share/*
 
+%post
+mkdir -p /home/nemo/.themepack/%{name}
+if [ -d "/usr/share/%{name}/font" ]; then
+	mv /usr/share/%{name}/font /home/nemo/.themepack/%{name}/
+	ln -s /home/nemo/.themepack/%{name}/font /usr/share/%{name}/
+fi
+if [ -d "/usr/share/%{name}/font-nonlatin" ]; then
+	mv /usr/share/%{name}/font-nonlatin /home/nemo/.themepack/%{name}/
+	ln -s /home/nemo/.themepack/%{name}/ /usr/share/%{name}/
+fi
+
 %postun
 if [ $1 = 0 ]; then
     // Do stuff specific to uninstalls
-rm -rf /usr/share/harbour-themepack-%{name}
+    rm -rf /usr/share/{name}
+    rm -rf /home/nemo/.themepack/%{name}
 else
 if [ $1 = 1 ]; then
     // Do stuff specific to upgrades
