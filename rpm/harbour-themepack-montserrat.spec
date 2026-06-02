@@ -6,8 +6,8 @@ Group:         System/Tools
 Vendor:        fravaccaro
 Distribution:  SailfishOS
 Requires:      harbour-themepacksupport >= 0.8.8-1
-Packager:      fravaccaro <fravaccaro@jollacommunity.it>
-URL:           www.jollacommunity.it
+Packager:      fravaccaro
+URL:           https://github.com/uithemer/harbour-themepack-montserrat
 License:       GPLv3
 Source0:       %{name}-%{version}.tar.gz
 BuildArch:     noarch
